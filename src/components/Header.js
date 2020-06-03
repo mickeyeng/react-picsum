@@ -14,12 +14,18 @@ const Header = () => {
 };
 
 const StyledHeader = styled.header`
-  padding: 1rem;
-  background: red;
-  padding: 10px;
+  padding: 1.2rem;
+  background: #95d5b2;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 900;
+
+  a {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+  }
 `;
 
 export default Header;
