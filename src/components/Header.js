@@ -20,6 +20,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   font-weight: 900;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
 
   a {
     font-size: 1.4rem;

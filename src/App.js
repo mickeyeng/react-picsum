@@ -18,6 +18,7 @@ const App = () => {
             <Photos />
           </Route>
           <Route path="/cart">
+            s
             <Cart />
           </Route>
         </Switch>

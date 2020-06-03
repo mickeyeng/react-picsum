@@ -1,7 +1,6 @@
 import React, { createContext, Provider, useState, useEffect } from 'react';
 
 const Context = createContext();
-
 const PHOTOS_URL = `https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json`;
 
 const ContextProvider = ({ children }) => {
@@ -13,7 +12,24 @@ const ContextProvider = ({ children }) => {
       .then((data) => setAllPhotos(data));
   }, []);
 
-  return <Context.Provider value={allPhotos}>{children}</Context.Provider>;
+  const toggleFavorite = (id) => {
+    console.log('clicked toggle favorite');
+    const newPhotos = allPhotos.map((photo) => {
+      if (photo.id === id) {
+        return {
+          ...photo,
+          isFavorite: !photo.isFavorite,
+        };
+      }
+      setAllPhotos(newPhotos);
+    });
+  };
+
+  return (
+    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+      {children}
+    </Context.Provider>
+  );
 };
 
 export { ContextProvider, Context };

@@ -7,8 +7,12 @@
   margin: 0;
   padding: 0;
 }
-
 :root {
+  --black: #150605;
+  --red: #ea453c;
+  --pink: #f47b6e;
+  --light-blue: #effbfe;
+  --blue: #ace6ec;
 }
 
 body {
