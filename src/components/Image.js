@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Context } from '../context/context';
 import styled from 'styled-components';
 
@@ -71,5 +72,13 @@ const StyledImageWrapper = styled.div`
     cursor: pointer;
   }
 `;
+
+Image.propTypes = {
+  img: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+  }),
+};
 
 export default Image;
