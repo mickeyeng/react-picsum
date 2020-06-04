@@ -1,4 +1,4 @@
-import React, { createContext, Provider, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 const Context = createContext();
 const PHOTOS_URL = `https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json`;

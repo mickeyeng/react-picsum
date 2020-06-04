@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../context/context';
 import styled from 'styled-components';
 
 const Header = () => {
+  const { cartItems } = useContext(Context);
+
+  const cartIcon = () => {
+    if (cartItems.length > 0) {
+      return <i className="ri-shopping-cart-fill ri-fw ri-2x cart-full"></i>;
+    }
+
+    return <i className="ri-shopping-cart-line ri-fw ri-2x"></i>;
+  };
+
   return (
     <StyledHeader>
       <Link to="/">PicSome</Link>
-      <Link to="/cart">
-        <i className="ri-shopping-cart-line ri-fw ri-2x"></i>
-      </Link>
+      <Link to="/cart">{cartIcon()}</Link>
     </StyledHeader>
   );
 };
@@ -25,7 +34,11 @@ const StyledHeader = styled.header`
   a {
     font-size: 1.4rem;
     text-decoration: none;
-    color: white;
+    color: black;
+  }
+
+  .cart-full {
+    color: --var(blue);
   }
 `;
 
