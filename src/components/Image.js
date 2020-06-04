@@ -6,11 +6,29 @@ const Image = ({ img }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { toggleFavorite } = useContext(Context);
 
-  const heartIcon = isHovered && (
-    <i
-      onClick={() => toggleFavorite(img.id)}
-      className="ri-heart-line favorite"></i>
-  );
+  // const heartIcon = isHovered && (
+  //   <i
+  //     onClick={() => toggleFavorite(img.id)}
+  //     className="ri-heart-line favorite"></i>
+  // );
+
+  function heartIcon() {
+    if (img.isFavorite) {
+      return (
+        <i
+          className="ri-heart-fill favorite favorite-fill"
+          onClick={() => toggleFavorite(img.id)}></i>
+      );
+    } else if (isHovered) {
+      return (
+        <i
+          className="ri-heart-line favorite"
+          onClick={() => toggleFavorite(img.id)}></i>
+      );
+    }
+  }
+
+  // const filledHeartIcon = <i className="ri-heart-fill favorite fill"></i>;
   const plusIcon = isHovered && <i className="ri-add-circle-line plus"></i>;
 
   return (
@@ -19,7 +37,7 @@ const Image = ({ img }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}>
       <StyledImage src={img.url} alt={img.url} />
-      {heartIcon}
+      {heartIcon()}
       {plusIcon}
     </StyledImageWrapper>
   );
@@ -38,6 +56,11 @@ const StyledImageWrapper = styled.div`
     top: 10px;
     left: 10px;
     cursor: pointer;
+    color: var(--red);
+  }
+
+  .favorite-fill {
+    opacity: 0.7;
   }
 
   .plus {
