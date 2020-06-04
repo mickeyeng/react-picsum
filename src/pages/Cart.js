@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Context } from '../context/context';
 import styled from 'styled-components';
 import CartItem from '../components/CartItem';
 
 const Cart = () => {
-  const { cartItems, removeItemFromCart } = useContext(Context);
+  const { cartItems, removeItemFromCart, emptyCart } = useContext(Context);
+  const [orderBtnText, setOrderBtnText] = useState('Place Order');
+
   const totalCost = cartItems.length * 5.99;
   const totalCostDisplay = totalCost.toLocaleString('en-US', {
     style: 'currency',
@@ -20,11 +22,31 @@ const Cart = () => {
     />
   ));
 
+  const orderItems = () => {
+    if (cartItems.length > 0) {
+      setTimeout(() => {
+        console.log('order placed!');
+        setOrderBtnText('Ordering...');
+        emptyCart();
+      }, 3000);
+    }
+  };
+
+  const orderDisabled =
+    cartItems.length <= 0 ? (
+      <button disabled onClick={orderItems}>
+        {orderBtnText}
+      </button>
+    ) : (
+      <button onClick={orderItems}>{orderBtnText}</button>
+    );
+
   return (
     <StyledCartWrapper>
       <h1>Shopping Cart</h1>
       {items}
       <h2>Total cost: {totalCostDisplay}</h2>
+      {orderDisabled}
     </StyledCartWrapper>
   );
 };
@@ -39,21 +61,27 @@ const StyledCartWrapper = styled.div`
     font-size: 2.2rem;
     font-weight: normal;
   }
-`;
 
-const StyledCartCard = styled.div`
-  border: 1px solid black;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
+  button {
+    width: 15%;
+    padding: 1rem;
+    border: 3px solid black;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: opacity ease;
+    outline: none;
+    cursor: pointer;
+    margin-top: 2rem;
 
-  span {
-    font-size: 1.4rem;
-  }
+    &:hover {
+      background: black;
+      color: white;
+    }
 
-  img {
-    width: 25%;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `;
 

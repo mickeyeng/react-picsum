@@ -13,7 +13,7 @@ const CartItem = ({ url, id, remove }) => {
       <strong>
         <p>Item Description:</p>
       </strong>
-      <div class="card-description">
+      <div className="card-description">
         <p>
           Cupidatat Lorem nostrud ad laboris non laborum id excepteur.
           Reprehenderit cillum dolor anim Lorem elit sit proident duis irure qui
@@ -21,10 +21,9 @@ const CartItem = ({ url, id, remove }) => {
         </p>
       </div>
       <div className="buttons">
-        <button>Place Order</button>
         <i
           onClick={() => remove(id)}
-          class="ri-delete-bin-line remove-icon"></i>
+          className="ri-delete-bin-line remove-icon"></i>
       </div>
     </StyledCartCard>
   );

@@ -39,6 +39,10 @@ const ContextProvider = ({ children }) => {
     console.log('new cart items after removed', cartItems.length);
   };
 
+  const emptyCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <Context.Provider
       value={{
@@ -47,6 +51,7 @@ const ContextProvider = ({ children }) => {
         addItemsToCart,
         cartItems,
         removeItemFromCart,
+        emptyCart,
       }}>
       {children}
     </Context.Provider>
