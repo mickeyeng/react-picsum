@@ -28,14 +28,26 @@ const ContextProvider = ({ children }) => {
   };
 
   const addItemsToCart = (newItem) => {
-    console.log('clicked');
     setCartItems((prevCartItems) => [...prevCartItems, newItem]);
+    console.log('added new item to the cart', cartItems.length);
   };
 
-  console.log(cartItems);
+  const removeItemFromCart = (id) => {
+    setCartItems((prevCartItems) =>
+      prevCartItems.filter((item) => item.id !== id)
+    );
+    console.log('new cart items after removed', cartItems.length);
+  };
 
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite, addItemsToCart }}>
+    <Context.Provider
+      value={{
+        allPhotos,
+        toggleFavorite,
+        addItemsToCart,
+        cartItems,
+        removeItemFromCart,
+      }}>
       {children}
     </Context.Provider>
   );

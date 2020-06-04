@@ -5,13 +5,12 @@ import styled from 'styled-components';
 
 const Image = ({ img }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { toggleFavorite, addItemsToCart } = useContext(Context);
-
-  // const heartIcon = isHovered && (
-  //   <i
-  //     onClick={() => toggleFavorite(img.id)}
-  //     className="ri-heart-line favorite"></i>
-  // );
+  const {
+    toggleFavorite,
+    addItemsToCart,
+    removeItemFromCart,
+    cartItems,
+  } = useContext(Context);
 
   function heartIcon() {
     if (img.isFavorite) {
@@ -29,12 +28,22 @@ const Image = ({ img }) => {
     }
   }
 
-  // const filledHeartIcon = <i className="ri-heart-fill favorite fill"></i>;
-  const plusIcon = isHovered && (
-    <i
-      onClick={() => addItemsToCart(img)}
-      className="ri-add-circle-line plus"></i>
-  );
+  const cartIcon = () => {
+    const alreadyInCart = cartItems.some((item) => item.id === img.id);
+    if (alreadyInCart) {
+      return (
+        <i
+          onClick={() => removeItemFromCart(img.id)}
+          className="ri-shopping-cart-fill cart"></i>
+      );
+    } else if (isHovered) {
+      return (
+        <i
+          onClick={() => addItemsToCart(img)}
+          className="ri-add-circle-line plus"></i>
+      );
+    }
+  };
 
   return (
     <StyledImageWrapper
@@ -43,7 +52,7 @@ const Image = ({ img }) => {
       onMouseLeave={() => setIsHovered(false)}>
       <StyledImage src={img.url} alt={img.url} />
       {heartIcon()}
-      {plusIcon}
+      {cartIcon()}
     </StyledImageWrapper>
   );
 };
@@ -74,6 +83,15 @@ const StyledImageWrapper = styled.div`
     top: 10px;
     right: 10px;
     cursor: pointer;
+  }
+
+  .cart {
+    position: absolute;
+    font-size: 2rem;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: var(--blue);
   }
 `;
 
