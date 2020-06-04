@@ -11,14 +11,13 @@ const App = () => {
     <div className="App">
       <Header />
       <StyledWrapper>
-        <h1>Home Page</h1>
+        {/* <h1>Home Page</h1> */}
 
         <Switch>
           <Route exact path="/">
             <Photos />
           </Route>
           <Route path="/cart">
-            s
             <Cart />
           </Route>
         </Switch>
