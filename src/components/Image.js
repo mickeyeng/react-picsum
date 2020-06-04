@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Image = ({ img }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { toggleFavorite } = useContext(Context);
+  const { toggleFavorite, addItemsToCart } = useContext(Context);
 
   // const heartIcon = isHovered && (
   //   <i
@@ -30,7 +30,11 @@ const Image = ({ img }) => {
   }
 
   // const filledHeartIcon = <i className="ri-heart-fill favorite fill"></i>;
-  const plusIcon = isHovered && <i className="ri-add-circle-line plus"></i>;
+  const plusIcon = isHovered && (
+    <i
+      onClick={() => addItemsToCart(img)}
+      className="ri-add-circle-line plus"></i>
+  );
 
   return (
     <StyledImageWrapper

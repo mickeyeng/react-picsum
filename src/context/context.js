@@ -5,6 +5,7 @@ const PHOTOS_URL = `https://raw.githubusercontent.com/bobziroll/scrimba-react-bo
 
 const ContextProvider = ({ children }) => {
   const [allPhotos, setAllPhotos] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     fetch(PHOTOS_URL)
@@ -26,8 +27,15 @@ const ContextProvider = ({ children }) => {
     setAllPhotos(newPhotos);
   };
 
+  const addItemsToCart = (newItem) => {
+    console.log('clicked');
+    setCartItems((prevCartItems) => [...prevCartItems, newItem]);
+  };
+
+  console.log(cartItems);
+
   return (
-    <Context.Provider value={{ allPhotos, toggleFavorite }}>
+    <Context.Provider value={{ allPhotos, toggleFavorite, addItemsToCart }}>
       {children}
     </Context.Provider>
   );
