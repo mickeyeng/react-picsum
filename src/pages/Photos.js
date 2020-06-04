@@ -6,11 +6,7 @@ import styled from 'styled-components';
 const Photos = () => {
   const { allPhotos } = useContext(Context);
 
-  console.log('all photos', allPhotos);
-
-  const newPhotos = allPhotos.map((photo) => (
-    <Image key={photo.id} img={photo} />
-  ));
+  const newPhotos = allPhotos.map((img) => <Image key={img.id} img={img} />);
   return <StyledImagesContainer>{newPhotos}</StyledImagesContainer>;
 };
 
@@ -19,5 +15,4 @@ const StyledImagesContainer = styled.div`
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `;
-
 export default Photos;

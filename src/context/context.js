@@ -13,16 +13,17 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   const toggleFavorite = (id) => {
-    console.log('clicked toggle favorite');
+    console.log('clicked toggle favorite', id);
     const newPhotos = allPhotos.map((photo) => {
       if (photo.id === id) {
-        return {
-          ...photo,
-          isFavorite: !photo.isFavorite,
-        };
+        console.log(id);
+        console.log(!photo.isFavorite);
+        return { ...photo, isFavorite: !photo.isFavorite };
       }
-      setAllPhotos(newPhotos);
+      return photo;
     });
+
+    setAllPhotos(newPhotos);
   };
 
   return (

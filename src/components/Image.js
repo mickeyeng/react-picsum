@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Image = ({ img }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const toggleFavorite = useContext(Context);
+  const { toggleFavorite } = useContext(Context);
 
   const heartIcon = isHovered && (
     <i
