@@ -7,7 +7,16 @@ const Photos = () => {
   const { allPhotos } = useContext(Context);
 
   const newPhotos = allPhotos.map((img) => <Image key={img.id} img={img} />);
-  return <StyledImagesContainer>{newPhotos}</StyledImagesContainer>;
+  const showPhotos =
+    newPhotos.length <= 0 ? (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    ) : (
+      newPhotos
+    );
+
+  return <StyledImagesContainer>{showPhotos}</StyledImagesContainer>;
 };
 
 const StyledImagesContainer = styled.div`

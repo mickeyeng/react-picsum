@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from '../context/context';
 import styled from 'styled-components';
+import useHover from '../hooks/useHover';
 
 const Image = ({ img }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, ref] = useHover();
   const {
     toggleFavorite,
     addItemsToCart,
@@ -46,10 +48,7 @@ const Image = ({ img }) => {
   };
 
   return (
-    <StyledImageWrapper
-      className="favorite"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}>
+    <StyledImageWrapper className="favorite" ref={ref}>
       <StyledImage src={img.url} alt={img.url} />
       {heartIcon()}
       {cartIcon()}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import useHover from '../hooks/useHover';
 
 const CartItem = ({ url, id, remove }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, ref] = useHover();
 
   return (
     <StyledCartCard>
@@ -25,9 +27,10 @@ const CartItem = ({ url, id, remove }) => {
       </div>
       <div className="buttons">
         <i
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          // onMouseEnter={() => setIsHovered(true)}
+          // onMouseLeave={() => setIsHovered(false)}
           onClick={() => remove(id)}
+          ref={ref}
           className={
             isHovered
               ? 'ri-delete-bin-fill remove-icon'
