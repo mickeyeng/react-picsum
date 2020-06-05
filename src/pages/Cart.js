@@ -44,6 +44,9 @@ const Cart = () => {
   return (
     <StyledCartWrapper>
       <h1>Shopping Cart</h1>
+      {cartItems.length <= 0 && (
+        <p>shopping Cart Empty. Please add items to checkout 👍</p>
+      )}
       {items}
       <h2>Total cost: {totalCostDisplay}</h2>
       {orderDisabled}
@@ -55,6 +58,11 @@ const StyledCartWrapper = styled.div`
   h1 {
     font-size: 3.2rem;
     text-align: center;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.4rem;
   }
 
   h2 {

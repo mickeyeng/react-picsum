@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ url, id, remove }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <StyledCartCard>
       <span>Item: {id}</span>
@@ -22,11 +25,23 @@ const CartItem = ({ url, id, remove }) => {
       </div>
       <div className="buttons">
         <i
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           onClick={() => remove(id)}
-          className="ri-delete-bin-line remove-icon"></i>
+          className={
+            isHovered
+              ? 'ri-delete-bin-fill remove-icon'
+              : 'ri-delete-bin-line remove-icon'
+          }></i>
       </div>
     </StyledCartCard>
   );
+};
+
+CartItem.propTypes = {
+  url: PropTypes.string,
+  id: PropTypes.string,
+  remove: PropTypes.func,
 };
 
 const StyledCartCard = styled.div`
