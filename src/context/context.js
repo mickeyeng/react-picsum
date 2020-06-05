@@ -8,10 +8,21 @@ const ContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
+    console.log('get item useEffect');
+    const data = localStorage.getItem('cartItems');
+    return data && setCartItems(JSON.parse(data));
+  }, []);
+
+  useEffect(() => {
     fetch(PHOTOS_URL)
       .then((response) => response.json())
       .then((data) => setAllPhotos(data));
   }, []);
+
+  useEffect(() => {
+    console.log('set item useEffect');
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const toggleFavorite = (id) => {
     console.log('clicked toggle favorite', id);
