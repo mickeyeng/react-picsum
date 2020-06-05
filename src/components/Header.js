@@ -17,6 +17,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <Link to="/">PicSome</Link>
+      <Link to="/favourites">Favourites</Link>
       <Link to="/cart">{cartIcon()}</Link>
     </StyledHeader>
   );

@@ -6,6 +6,7 @@ const PHOTOS_URL = `https://raw.githubusercontent.com/bobziroll/scrimba-react-bo
 const ContextProvider = ({ children }) => {
   const [allPhotos, setAllPhotos] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     console.log('get item useEffect');
@@ -50,6 +51,13 @@ const ContextProvider = ({ children }) => {
     console.log('new cart items after removed', cartItems.length);
   };
 
+  const addItemsToFavourites = (newItem) => {
+    console.log('clicked');
+    console.log('new favourite item', newItem);
+    setFavourites((prevFavouriteItems) => [...prevFavouriteItems, newItem]);
+    console.log('added new item to favourites', favourites.length);
+  };
+
   const emptyCart = () => {
     setCartItems([]);
   };
@@ -63,6 +71,8 @@ const ContextProvider = ({ children }) => {
         cartItems,
         removeItemFromCart,
         emptyCart,
+        favourites,
+        addItemsToFavourites,
       }}>
       {children}
     </Context.Provider>

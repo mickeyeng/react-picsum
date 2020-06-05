@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Photos from './pages/Photos';
 import Cart from './pages/Cart';
 import styled from 'styled-components';
+import Favourites from './pages/Favourites';
 
 const App = () => {
   return (
@@ -19,6 +20,9 @@ const App = () => {
           </Route>
           <Route path="/cart">
             <Cart />
+          </Route>
+          <Route>
+            <Favourites />
           </Route>
         </Switch>
       </StyledWrapper>

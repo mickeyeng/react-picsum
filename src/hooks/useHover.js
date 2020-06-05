@@ -5,13 +5,14 @@ const useHover = () => {
   const ref = useRef(null);
 
   useEffect(() => {
-    ref.current.addEventListener('mouseenter', mouseEnter);
-    ref.current.addEventListener('mouseleave', mouseLeave);
+    const refEl = ref.current;
+    refEl.addEventListener('mouseenter', mouseEnter);
+    refEl.addEventListener('mouseleave', mouseLeave);
 
     // when the component unmounts
     return () => {
-      ref.current.removeEventListener('mouseenter', mouseEnter);
-      ref.current.removeEventListener('mouseleave', mouseLeave);
+      refEl.removeEventListener('mouseenter', mouseEnter);
+      refEl.removeEventListener('mouseleave', mouseLeave);
     };
   }, []);
 

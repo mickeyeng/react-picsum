@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Context } from '../context/context';
 import styled from 'styled-components';
@@ -12,20 +12,26 @@ const Image = ({ img }) => {
     addItemsToCart,
     removeItemFromCart,
     cartItems,
+    addItemsToFavourites,
   } = useContext(Context);
+
+  const handleFavouriteClick = () => {
+    toggleFavorite(img.id);
+    addItemsToFavourites(img);
+  };
 
   function heartIcon() {
     if (img.isFavorite) {
       return (
         <i
           className="ri-heart-fill favorite favorite-fill"
-          onClick={() => toggleFavorite(img.id)}></i>
+          onClick={handleFavouriteClick}></i>
       );
     } else if (isHovered) {
       return (
         <i
           className="ri-heart-line favorite"
-          onClick={() => toggleFavorite(img.id)}></i>
+          onClick={handleFavouriteClick}></i>
       );
     }
   }
