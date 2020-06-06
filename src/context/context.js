@@ -1,29 +1,20 @@
 import React, { createContext, useState, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 const Context = createContext();
 const PHOTOS_URL = `https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json`;
 
 const ContextProvider = ({ children }) => {
   const [allPhotos, setAllPhotos] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
-  const [favourites, setFavourites] = useState([]);
-
-  useEffect(() => {
-    console.log('get item useEffect');
-    const data = localStorage.getItem('cartItems');
-    return data && setCartItems(JSON.parse(data));
-  }, []);
+  // const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useLocalStorage('cartItems', []);
+  const [favourites, setFavourites] = useLocalStorage('favouriteItems', []);
 
   useEffect(() => {
     fetch(PHOTOS_URL)
       .then((response) => response.json())
       .then((data) => setAllPhotos(data));
   }, []);
-
-  useEffect(() => {
-    console.log('set item useEffect');
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
 
   const toggleFavorite = (id) => {
     console.log('clicked toggle favorite', id);
